@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "devDependencies": {
+    "coffeescript": "*"
+  },
+  "author": "Oded Niv",
+  "license": "UNLICENSE"
+}
