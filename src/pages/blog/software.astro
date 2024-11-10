@@ -1,0 +1,10 @@
+---
+import BlogList from '../../layouts/BlogList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).filter(
+	post => post.slug.startsWith('software/')
+);
+---
+
+<BlogList title="Software Engineering" collection={posts} />

@@ -1,9 +1,7 @@
 ---
 title: 'Definition of Politics'
 description: 'What you might have missed when thinking about the glamorous occupation - the unspoken definition of politics.'
-tags: ['shower-thoughts']
 pubDate: 'Nov 23 2012'
-heroImage: '/blog/definition-of-politics.webp'
 ---
 
 > "Using a resource that belongs to others in a wrong way, for self benefit rather than for the benefit of the owners of the resource."

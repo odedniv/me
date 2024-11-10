@@ -1,9 +1,7 @@
 ---
 title: 'SQL vs NoSQL vs Search Engines'
 description: "Which engine should you use for storing your data? If you're not 100% sure - this may point you in the right direction."
-tags: ['software-engineering']
 pubDate: 'Nov 05 2015'
-heroImage: '/blog/sql-nosql-search.webp'
 ---
 
 Which engine should you use to store your data?
