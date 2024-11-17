@@ -129,12 +129,11 @@ pnpm dev
 ## 📐 Configure
 
 - Edit the configuration file **src/data/site.config.ts** for the basic blog metadata.
-- Update the **astro.config.mjs** file at the root of the project with your own domain.
 - Modify the files in the **/public** folder:
   - favicon
   - robots.txt -> update the Sitemap url to your own domain
   - open-graph -> the open-graph is the image that will be displayed when sharing the blog link. For posts, the preview image is the post cover.
-- Edit the social networks in the Header component - **src/components/Header.astro**, change the URL to your social network.
+- Edit the social networks in **src/data/links.ts**, change the URL to your social network.
 
 ## 🗂️ Adding a category
 
