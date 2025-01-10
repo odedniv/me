@@ -36,7 +36,6 @@ const posts = page.data
 ---
 
 <BaseLayout title={categoryName}>
-	<TitlePage title={categoryName} />
 	<ListCategories activeCategory={params.category} />
 	<ListPosts posts={posts} />
 	<Pagination page={page} />
