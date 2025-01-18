@@ -21,7 +21,7 @@ import { SOCIALNETWORKS } from '@/data/links'
 				{
 					SOCIALNETWORKS.map((network) => (
 						<HeaderLink class='' href={network.url} target='_blank' aria-label={network.name}>
-							<span>{<network.icon />} </span>
+							<span title={network.name}>{<network.icon />} </span>
 						</HeaderLink>
 					))
 				}
