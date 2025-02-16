@@ -1,0 +1,60 @@
+---
+const isProd = import.meta.env.PROD
+
+const { id } = Astro.props
+const issueTerm = `${isProd ? id : 'Development'} comments`
+---
+
+<utterances-display>
+	{!isProd && `Real utterances ID: ${id}`}
+	<div id='utterances-light' style='display: none'>
+		<script
+			is:inline
+			src='https://utteranc.es/client.js'
+			repo='odedniv/me'
+			issue-term={issueTerm}
+			label='site comments'
+			theme='github-light'
+			crossorigin='anonymous'
+			async></script>
+	</div>
+	<div id='utterances-dark' style='display: none'>
+		<script
+			is:inline
+			src='https://utteranc.es/client.js'
+			repo='odedniv/me'
+			issue-term={issueTerm}
+			label='site comments'
+			theme='github-dark'
+			crossorigin='anonymous'
+			async></script>
+	</div>
+</utterances-display>
+
+<script>
+	class UtterancesDisplay extends HTMLElement {
+		connectedCallback() {
+			this.lightElement = this.querySelector('#utterances-light')
+			this.darkElement = this.querySelector('#utterances-dark')
+			this.showUtterances()
+			this.callback = () => this.showUtterances()
+			document.addEventListener('theme-change', this.callback)
+		}
+
+		disconnectedCallback() {
+			document.removeEventListener('theme-change', this.callback)
+		}
+
+		showUtterances() {
+			const theme = localStorage.getItem('theme') ?? 'light'
+			if (theme === 'light') {
+				this.lightElement.style.display = ''
+				this.darkElement.style.display = 'none'
+			} else {
+				this.lightElement.style.display = 'none'
+				this.darkElement.style.display = ''
+			}
+		}
+	}
+	customElements.define('utterances-display', UtterancesDisplay)
+</script>
