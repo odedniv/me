@@ -1,0 +1,34 @@
+---
+import BaseLayout from '@/layouts/BaseLayout'
+import ListPosts from '@/components/ListPosts'
+import ListCategories from '@/components/ListCategories'
+import TitlePage from '@/components/TitlePage'
+import { getCategories, getPosts } from '@/utils'
+import { siteConfig } from '@/data/site.config'
+import Pagination from '@/components/Pagination'
+
+export async function getStaticPaths({ paginate }: any) {
+	const categories = await getCategories()
+	const allPosts = await getPosts()
+
+	return categories.flatMap((category) => {
+		const filteredPosts = allPosts.filter((post) => post.data.category === category.title)
+
+		return paginate(filteredPosts, {
+			params: { category: category.slug },
+			props: { category },
+			pageSize: siteConfig.paginationSize
+		})
+	})
+}
+
+const { category, page } = Astro.props
+const posts = page.data
+---
+
+<BaseLayout title={category.title}>
+	<TitlePage title={category.title} />
+	<ListCategories activeCategory={category} />
+	<ListPosts posts={posts} />
+	<Pagination page={page} />
+</BaseLayout>
