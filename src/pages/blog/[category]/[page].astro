@@ -1,0 +1,23 @@
+---
+import CategoryPage from '@/components/CategoryPage'
+import { getCategories, getPosts } from '@/utils'
+import { siteConfig } from '@/data/site.config'
+
+export async function getStaticPaths({ paginate }: any) {
+	const categories = await getCategories()
+	const allPosts = await getPosts()
+
+	return categories.flatMap((category) => {
+		const filteredPosts = allPosts.filter((post) => post.data.category === category.title)
+
+		return paginate(filteredPosts, {
+			params: { category: category.slug },
+			props: { category },
+			pageSize: siteConfig.paginationSize
+		})
+	})
+}
+const { category, page } = Astro.props
+---
+
+<CategoryPage category={category} page={page} />
