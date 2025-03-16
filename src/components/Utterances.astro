@@ -1,0 +1,46 @@
+---
+const isProd = import.meta.env.PROD
+
+const { id } = Astro.props
+const issueTerm = `${isProd ? id : 'Development'} comments`
+---
+
+{!isProd && `Real utterances ID: ${id}`}
+<div id='utterances-light' style='display: none'>
+	<script
+		is:inline
+		src='https://utteranc.es/client.js'
+		repo='odedniv/me'
+		issue-term={issueTerm}
+		label='site comments'
+		theme='github-light'
+		crossorigin='anonymous'
+		async></script>
+</div>
+<div id='utterances-dark' style='display: none'>
+	<script
+		is:inline
+		src='https://utteranc.es/client.js'
+		repo='odedniv/me'
+		issue-term={issueTerm}
+		label='site comments'
+		theme='github-dark'
+		crossorigin='anonymous'
+		async></script>
+</div>
+<script>
+	const lightElement = document.getElementById('utterances-light')
+	const darkElement = document.getElementById('utterances-dark')
+	function showUtterances() {
+		const theme = localStorage.getItem('theme') ?? 'light'
+		if (theme === 'light') {
+			lightElement.style.display = ''
+			darkElement.style.display = 'none'
+		} else {
+			lightElement.style.display = 'none'
+			darkElement.style.display = ''
+		}
+	}
+	showUtterances()
+	document.addEventListener('theme-change', showUtterances)
+</script>
