@@ -9,6 +9,14 @@
 
 	.prose code {
 		@apply text-base;
+		white-space: pre;
+	}
+
+	.prose code::before {
+		content: "";
+	}
+	.prose code::after {
+		content: "";
 	}
 
 	/* prose styles here */
