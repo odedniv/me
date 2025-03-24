@@ -10,6 +10,7 @@ const matomoSiteId = isProd ? "2" : "4"
 	_paq.push(["setDoNotTrack", true]);
 	_paq.push(["disableCookies"]);
 	_paq.push(['enableLinkTracking']);
+	_paq.push(['enableHeartBeatTimer', 10]);
 	_paq.push(['setTrackerUrl', '//analytics.odedniv.me/matomo.php']);
 	_paq.push(['setSiteId', matomoSiteId]);
 
