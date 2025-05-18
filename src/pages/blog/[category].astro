@@ -1,0 +1,37 @@
+---
+import CategoryPage from '@/components/CategoryPage'
+import { getCategories, getPosts } from '@/utils'
+import { siteConfig } from '@/data/site.config'
+
+export async function getStaticPaths() {
+	const categories = await getCategories()
+	const allPosts = await getPosts()
+
+	return categories.map((category) => {
+		const filteredPosts = allPosts.filter((post) => post.data.category === category.title)
+
+		const firstPagePosts = filteredPosts.slice(0, siteConfig.paginationSize)
+		const page = {
+			data: firstPagePosts,
+			start: 0,
+			end: firstPagePosts.length - 1,
+			total: filteredPosts.length,
+			currentPage: 1,
+			size: siteConfig.paginationSize,
+			lastPage: Math.ceil(filteredPosts.length / siteConfig.paginationSize),
+			url: {
+				current: `/blog/${category.slug}`,
+				next: `/blog/${category.slug}/2`
+			}
+		}
+
+		return {
+			params: { category: category.slug },
+			props: { category, page }
+		}
+	})
+}
+const { category, page } = Astro.props
+---
+
+<CategoryPage category={category} page={page} />

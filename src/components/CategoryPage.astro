@@ -1,0 +1,15 @@
+---
+import BaseLayout from '@/layouts/BaseLayout'
+import ListPosts from '@/components/ListPosts'
+import ListCategories from '@/components/ListCategories'
+import Pagination from '@/components/Pagination'
+
+const { category, page } = Astro.props
+const posts = page.data
+---
+
+<BaseLayout title={category.title}>
+	<ListCategories activeCategory={category} />
+	<ListPosts posts={posts} />
+	<Pagination page={page} />
+</BaseLayout>

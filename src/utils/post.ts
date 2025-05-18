@@ -6,7 +6,7 @@ export const getCategories = async () => {
 	const usedCategories = new Set(
 		posts.filter((post) => !post.data.draft).map((post) => post.data.category)
 	)
-	return Object.values(CATEGORIES).filter((category) => usedCategories.has(category.title))
+	return CATEGORIES.filter((category) => usedCategories.has(category.title))
 }
 
 export const getPosts = async (max?: number) => {
